@@ -24,7 +24,7 @@
 
     <?php
 
-      if(isset($_POST["name"]) && isset($_POST["email"])) {
+      if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["message"])) {
         echo "Name: " . $_POST["name"] . "<br>"
         . "Email: " . $_POST["email"] . "<br>"
         . "Message: " . $_POST["message"];
