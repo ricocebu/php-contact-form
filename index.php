@@ -19,17 +19,28 @@
       <input type="email" name="email" id="email">
       <label for="message">Message: </label>
       <textarea name="message" id="message" placeholder="Type your message here..." rows="5"></textarea>
-      <input type="submit" value="Submit">
+      <input type="submit" name="submit" value="Submit">
     </form>
 
     <?php
 
-      if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["message"])) {
-        echo "Name: " . $_POST["name"] . "<br>"
-        . "Email: " . $_POST["email"] . "<br>"
-        . "Message: " . $_POST["message"];
-      }
+      if (isset($_POST["submit"])) {
 
+        $name = $_POST["name"];
+        $email = $_POST["email"];
+        $message = $_POST["message"];
+
+        if ($name && filter_var($email, FILTER_VALIDATE_EMAIL) && $message) {
+          
+          echo "Name: " . htmlspecialchars($name) . "<br>"
+          . "Email: " . htmlspecialchars($email) . "<br>"
+          . "Message: " . htmlspecialchars($message);
+        
+        } else {
+          echo "Please make sure to input name, email, and message.";
+        }
+
+      }
     ?>
 
   </section>
