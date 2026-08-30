@@ -1,3 +1,5 @@
+<?php require_once 'config/database.php' ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +25,7 @@
     </form>
 
     <?php
-
+      
       if (isset($_POST["submit"])) {
 
         $name = $_POST["name"];
