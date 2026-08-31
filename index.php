@@ -33,11 +33,16 @@
         $message = $_POST["message"];
 
         if ($name && filter_var($email, FILTER_VALIDATE_EMAIL) && $message) {
-          
-          echo "Name: " . htmlspecialchars($name) . "<br>"
-          . "Email: " . htmlspecialchars($email) . "<br>"
-          . "Message: " . htmlspecialchars($message);
-        
+
+          $stmt = $conn->prepare("INSERT INTO contacts(name, email, message) VALUES(?, ?, ?)");
+          $stmt->bind_param("sss", $name, $email, $message);
+          $stmt->execute();
+
+          echo "Thank you! Your submission has been sent.";
+
+          $stmt->close();
+          $conn->close();
+
         } else {
           echo "Please make sure to input name, email, and message.";
         }
