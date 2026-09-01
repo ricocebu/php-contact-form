@@ -40,12 +40,14 @@
 
           echo "Thank you! Your submission has been sent.";
 
+          header("Refresh: 2.5");
+
           $stmt->close();
           $conn->close();
-
         } else {
           echo "Please make sure to input name, email, and message.";
         }
+
 
       }
     ?>
