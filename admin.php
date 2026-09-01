@@ -28,6 +28,7 @@
         <th>Email</th>
         <th>Message</th>
         <th>Date</th>
+        <th>Action</th>
       </tr>
 
       <?php 
@@ -40,6 +41,12 @@
         <td><?php echo htmlspecialchars($row["email"]); ?></td>
         <td><?php echo htmlspecialchars($row["message"]); ?></td>
         <td><?php echo htmlspecialchars($row["created_at"]); ?></td>
+        <td>
+          <form action="delete.php" method="POST">
+            <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+            <input type="submit" value="Delete">
+          </form>
+        </td>
       </tr>
       
         <?php        }
