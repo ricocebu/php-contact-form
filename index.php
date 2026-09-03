@@ -14,7 +14,7 @@
 
     <h1>Contact Form</h1>
 
-    <form action="" method="post" class="form">
+    <form action="" method="POST" class="form">
       <label for="name">Name: </label>
       <input type="text" name="name" id="name">
       <label for="email">Email: </label>

@@ -42,7 +42,7 @@
         <td><?php echo htmlspecialchars($row["message"]); ?></td>
         <td><?php echo htmlspecialchars($row["created_at"]); ?></td>
         <td>
-          <form action="update.php" method="POST">
+          <form action="update.php" method="GET">
             <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
             <input type="submit" value="Edit">
           </form>
