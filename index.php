@@ -38,9 +38,7 @@
           $stmt->bind_param("sss", $name, $email, $message);
           $stmt->execute();
 
-          echo "Thank you! Your submission has been sent.";
-
-          header("Refresh: 2.5");
+          echo "<script> alert('Thank you! Your submission has been sent.'); </script>";
 
           $stmt->close();
           $conn->close();

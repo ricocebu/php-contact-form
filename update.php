@@ -10,6 +10,8 @@
   $stmt->bind_param("sssi", $name, $email, $message, $id);
   $stmt->execute();
   
-  header("Location: admin.php");
+  echo "<script> alert('Contact updated.'); </script>";
+
+  header("Refresh: .1, url = admin.php");
   exit;
 ?>
