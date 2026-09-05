@@ -44,9 +44,6 @@
         <td>
           <form action="edit.php" method="GET">
             <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
-            <input type="hidden" name="name" value="<?php echo $row["name"]; ?>">
-            <input type="hidden" name="email" value="<?php echo $row["email"]; ?>">
-            <input type="hidden" name="message" value="<?php echo $row["message"]; ?>">
             <input type="submit" value="Edit">
           </form>
           <form action="delete.php" method="POST">
