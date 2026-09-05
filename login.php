@@ -1,9 +1,6 @@
 <?php
+  session_start();
   require_once 'config/database.php';
-
-  $sql = "SELECT username, password FROM admin_users";
-  $result = $conn->query($sql);
-  $row = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -35,13 +32,18 @@
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        $hash = $row["password"];
-        $verify_password = password_verify('password', $hash);
+        $stmt = $conn->prepare("SELECT * FROM admin_users WHERE username=?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
 
+        if ($row && password_verify($password, $row["password"])) {
 
+          $_SESSION['logged_in'] = true;
+          header("Location: admin.php");
+          exit;
 
-        if ($username == $row["username"] && $verify_password) {
-          echo "You are logged in";
         } else {
           echo "Invalid username or password";
         }
