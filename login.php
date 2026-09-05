@@ -1,5 +1,9 @@
 <?php
+  require_once 'config/database.php';
 
+  $sql = "SELECT username, password FROM admin_users";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -25,26 +29,19 @@
     </form>
 
     <?php
-      require_once 'config/database.php';
-      $username = $_POST["username"];
-      $password = $_POST["password"];
-
-      $stmt = $conn->prepare("SELECT * FROM admin_users WHERE username=?");
-      $stmt->bind_param("s", $username);
-      $stmt->execute();
-      $result = $stmt->get_result();
-      $row = $result->fetch_assoc();
 
       if (isset($_POST["submit"])) {
 
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
         $hash = $row["password"];
-        $verify_password = password_verify($password, $hash);
+        $verify_password = password_verify('password', $hash);
+
+
 
         if ($username == $row["username"] && $verify_password) {
-          session_start();
-          $_SESSION['logged in'] = true;
-
-          header("Location: admin.php");
+          echo "You are logged in";
         } else {
           echo "Invalid username or password";
         }
